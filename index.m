@@ -23,8 +23,8 @@
           </p>
           <nav class="quicklinks" aria-label="Page links">
             <a href="#tableau">Dashboards</a>
-            <a href="#sql-cs2">Olist Case Study</a>
-            <a href="#sql-cs1">Telco Case Study</a>
+            <a href="#sql-cs1">Olist Case Study</a>
+            <a href="#sql-cs2">Telco Case Study</a>
           </nav>
         </div>
 
@@ -54,14 +54,10 @@
             <div class="card-body">
               <h3>Olist Ecommerce Dashboard</h3>
               <p>
-                This dashboard defines revenue performance, customer value distribution, and operational efficiency from the Olist E-commerce Dataset.
-              </p>
-              <p class="muted">
-                Optional: tech stack / approach / interesting implementation detail.
+                This dashboard examines revenue performance, customer value distribution, and operational efficiency from the Kaggle Olist E-commerce Dataset.
               </p>
               <div class="links">
-                <a href="https://github.com/your-handle/your-repo" target="_blank" rel="noreferrer">Repo / Docs</a>
-                <a href="https://your-dashboard-link.example" target="_blank" rel="noreferrer">Live Demo</a>
+                <a href="https://public.tableau.com/views/Olist_Ecommerce_Dashboard_17785230046370/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" rel="noreferrer">Live Dashboard</a>
               </div>
             </div>
           </article>
@@ -71,83 +67,84 @@
               <img src="images/Telco-Churn-Dashboard.png" alt="Project image" />
             </a>
             <div class="card-body">
-              <h3>Project Title</h3>
+              <h3>Telco Churn Dashboard</h3>
               <p>
-                Two-to-three sentence project summary. What problem does it solve and what did you build?
-              </p>
-              <p class="muted">
-                Optional: tech stack / approach / interesting implementation detail.
+                This dashboard examines customer churn and revenue risk from the Kaggle Telco Customer Churn dataset.
               </p>
               <div class="links">
-                <a href="https://github.com/your-handle/your-repo" target="_blank" rel="noreferrer">Repo / Docs</a>
-                <a href="https://your-dashboard-link.example" target="_blank" rel="noreferrer">Live Demo</a>
+                <a href="https://public.tableau.com/views/TelcoChurnDashboard_17744604924010/TelcoCustomerChurn?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" rel="noreferrer">Live Demo</a>
               </div>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="sql-cs2" class="section case-study">
+      <section id="sql-cs1" class="section case-study">
         <header class="section-header">
-          <h2>Case Study 2</h2>
-          <p class="muted">Short one-liner describing this case study and what’s included.</p>
+          <h2>Olist Analysis</h2>
+          <p class="muted">This analysis explores the concentration of customer revenue, revenue risk, and whether delivery performance measurably affects customer satisfaction?</p>
         </header>
 
         <div class="case-grid">
           <div class="case-media">
-            <a href="images/8wksql_img_2.png" class="media">
-              <img src="images/8wksql_img_2.png" alt="Case study image" />
+            <a href="images/Olist-Cover.png" class="media">
+              <img src="images/Olist-Cover.png" alt="Case study image" />
             </a>
-            <a href="images/ERD-CS2.JPG" class="media">
-              <img src="images/ERD-CS2.JPG" alt="Entity relationship diagram" />
+            <a href="images/Olist-entity-relation" class="media">
+              <img src="images/Olist-entity-relation" alt="Entity relationship diagram" />
             </a>
           </div>
 
           <div class="case-body">
             <h3 class="subhead">Topics covered</h3>
             <ul class="topics">
-              <li>Common Table Expressions</li>
-              <li>Group By aggregates</li>
-              <li>Table joins</li>
-              <li>String transformations</li>
-              <li>Handling null values</li>
-              <li>Regular expressions</li>
+              <li>Data cleaning and integrity validation</li>
+              <li>Common Table Expressions (CTEs)</li>
+              <li>Aggregate tables and feature engineering</li>
+              <li>FULL OUTER, LEFT, and multi-table joins</li>
+              <li>Handling NULL values and inconsistent records</li>
+              <li>Revenue reconciliation and mismatch detection</li>
+              <li>Date and timestamp analysis</li>
             </ul>
             <div class="links">
-              <a href="https://github.com/your-handle/your-repo" target="_blank" rel="noreferrer">Repo / Docs</a>
-              <a href="https://your-source-link.example" target="_blank" rel="noreferrer">Data Source</a>
+              <a href="https://github.com/lbarriffe/revenue_analysis/" target="_blank" rel="noreferrer">Repo / Docs</a>
+              <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noreferrer">Data Source</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="sql-cs1" class="section case-study">
+      <section id="sql-cs2" class="section case-study">
         <header class="section-header">
-          <h2>Case Study 1</h2>
-          <p class="muted">Short one-liner describing this case study and what’s included.</p>
+          <h2>Case Study 2</h2>
+          <p class="muted">This analysis explores how short- and long-term customer acquisition practices affect customer quality, churn, and long-term business performance.</p>
         </header>
 
         <div class="case-grid">
           <div class="case-media">
-            <a href="images/8wksql_img_1.png" class="media">
-              <img src="images/8wksql_img_1.png" alt="Case study image" />
+            <a href="images/Telco-cover.png" class="media">
+              <img src="images/Telco-cover.png" alt="Case study image" />
             </a>
-            <a href="images/ERD-CS1.JPG" class="media">
-              <img src="images/ERD-CS1.JPG" alt="Entity relationship diagram" />
+            <a href="images/Telco-entity-relation" class="media">
+              <img src="images/Telco-entitiy-relation" alt="Entity relationship diagram" />
             </a>
           </div>
 
           <div class="case-body">
             <h3 class="subhead">Topics covered</h3>
             <ul class="topics">
+              <li>Data cleaning and integrity validation</li>
               <li>Common Table Expressions</li>
-              <li>Group By aggregates</li>
-              <li>Window functions for ranking</li>
-              <li>Table joins</li>
+              <li>Retention and cohort analysis</li>
+              <li>Customer churn analysis</li>
+              <li>Kaplan-Meier retention modeling</li>
+              <li>Log-rank survival difference testing</li>
+              <li>Cox proportional hazards modeling</li>
+              <li>Confidence interval estimation</li>
             </ul>
             <div class="links">
-              <a href="https://github.com/your-handle/your-repo" target="_blank" rel="noreferrer">Repo / Docs</a>
-              <a href="https://your-source-link.example" target="_blank" rel="noreferrer">Data Source</a>
+              <a href="https://github.com/lbarriffe/churn_analytics/" target="_blank" rel="noreferrer">Repo / Docs</a>
+              <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data" target="_blank" rel="noreferrer">Data Source</a>
             </div>
           </div>
         </div>
@@ -156,7 +153,7 @@
 
     <footer id="footer">
       <div class="container footer-inner">
-        <span class="muted">© Your Name</span>
+        <span class="muted">© Lenroy Barriffe</span>
       </div>
     </footer>
   </body>
