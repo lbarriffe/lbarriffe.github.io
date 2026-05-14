@@ -32,7 +32,7 @@
           <div class="social" aria-label="Social links">
             <a href="https://www.linkedin.com/in/lenroybarriffe/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://github.com/lbarriffe" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="lbarriffe@hotmail.com">Email</a>
+            <a href="mailto:lbarriffe@hotmail.com">Email</a>
           </div>
         </div>
       </div>
@@ -48,8 +48,8 @@
 
         <div class="grid">
           <article class="card">
-            <a href="images/Olist-Ecommerce-Dashboard.PNG" class="media">
-              <img src="images/Olist-Ecommerce-Dashboard.PNG" alt="Project image" />
+            <a href="images/Olist-Ecommerce-Dashboard.png" class="media js-zoomable">
+              <img src="images/Olist-Ecommerce-Dashboard.png" alt="Olist Ecommerce Dashboard preview" />
             </a>
             <div class="card-body">
               <h3>Olist Ecommerce Dashboard</h3>
@@ -63,8 +63,8 @@
           </article>
 
           <article class="card">
-            <a href="images/Telco-Churn-Dashboard.png" class="media">
-              <img src="images/Telco-Churn-Dashboard.png" alt="Project image" />
+            <a href="images/Telco-Churn-Dashboard.png" class="media js-zoomable">
+              <img src="images/Telco-Churn-Dashboard.png" alt="Telco Churn Dashboard preview" />
             </a>
             <div class="card-body">
               <h3>Telco Churn Dashboard</h3>
@@ -87,11 +87,11 @@
 
         <div class="case-grid">
           <div class="case-media">
-            <a href="images/Olist-Cover.jpeg" class="media">
-              <img src="images/Olist-Cover.jpeg" alt="Case study image" />
+            <a href="images/Olist-Cover.jpeg" class="media js-zoomable">
+              <img src="images/Olist-Cover.jpeg" alt="Olist analysis cover" />
             </a>
-            <a href="images/Olist-entity-relation.png" class="media">
-              <img src="images/Olist-entity-relation.png" alt="Entity relationship diagram" />
+            <a href="images/Olist-entity-relation.png" class="media js-zoomable">
+              <img src="images/Olist-entity-relation.png" alt="Olist entity relationship diagram" />
             </a>
           </div>
 
@@ -121,9 +121,10 @@
         </header>
 
         <div class="case-grid">
-          <div class="case-media">
-            <a href="images/Telco-Cover.svg" class="media">
-              <img src="images/Telco-Cover.svg" alt="Case study image" />
+          <!-- Removed ERD block to eliminate extra spacing -->
+          <div class="case-media single">
+            <a href="images/Telco-Cover.svg" class="media js-zoomable">
+              <img src="images/Telco-Cover.svg" alt="Telco analysis cover" />
             </a>
           </div>
 
@@ -153,8 +154,69 @@
         <span class="muted">© Lenroy Barriffe</span>
       </div>
     </footer>
-  </body>
-</html>
 
-</html>
+    <!-- Image lightbox (click image to zoom; ESC/click X/click backdrop to close) -->
+    <div id="lightbox" class="lightbox" hidden aria-hidden="true">
+      <div class="lightbox-backdrop" data-lightbox-close></div>
+      <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button type="button" class="lightbox-close" aria-label="Close image preview" data-lightbox-close>
+          ×
+        </button>
+        <img id="lightbox-img" class="lightbox-img" alt="" />
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        if (!lightbox || !lightboxImg) return;
+
+        let lastFocused = null;
+
+        function openLightbox(src, alt) {
+          lastFocused = document.activeElement;
+          lightboxImg.src = src;
+          lightboxImg.alt = alt || "Image preview";
+          lightbox.hidden = false;
+          lightbox.setAttribute("aria-hidden", "false");
+          document.body.classList.add("no-scroll");
+          const closeBtn = lightbox.querySelector(".lightbox-close");
+          if (closeBtn) closeBtn.focus();
+        }
+
+        function closeLightbox() {
+          lightbox.hidden = true;
+          lightbox.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("no-scroll");
+          lightboxImg.src = "";
+          if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+        }
+
+        document.addEventListener("click", (e) => {
+          const closeTarget = e.target.closest("[data-lightbox-close]");
+          if (closeTarget) {
+            e.preventDefault();
+            closeLightbox();
+            return;
+          }
+
+          const anchor = e.target.closest("a.js-zoomable");
+          if (!anchor) return;
+          const img = anchor.querySelector("img");
+          if (!img) return;
+
+          e.preventDefault();
+          openLightbox(anchor.getAttribute("href"), img.getAttribute("alt"));
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !lightbox.hidden) {
+            e.preventDefault();
+            closeLightbox();
+          }
+        });
+      })();
+    </script>
+
 
