@@ -4,7 +4,7 @@
     <title>Data Analyst Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/git-main.css" />
+    <link rel="stylesheet" href="assets/css/git-main.css" />
   </head>
   <body>
     <!-- Top Header -->
@@ -120,29 +120,28 @@
           <p class="muted">This analysis explores how short- and long-term customer acquisition practices affect customer quality, churn, and long-term business performance.</p>
         </header>
 
-        <div class="case-grid">
-          <!-- Removed ERD block to eliminate extra spacing -->
-          <div class="case-media single">
+        <div class="case-grid case-grid--media-focus">
+          <div class="case-media case-media--with-body">
             <a href="images/Telco-Cover.svg" class="media js-zoomable">
               <img src="images/Telco-Cover.svg" alt="Telco analysis cover" />
             </a>
-          </div>
 
-          <div class="case-body">
-            <h3 class="subhead">Topics covered</h3>
-            <ul class="topics">
-              <li>Data cleaning and integrity validation</li>
-              <li>Common Table Expressions</li>
-              <li>Retention and cohort analysis</li>
-              <li>Customer churn analysis</li>
-              <li>Kaplan-Meier retention modeling</li>
-              <li>Log-rank survival difference testing</li>
-              <li>Cox proportional hazards modeling</li>
-              <li>Confidence interval estimation</li>
-            </ul>
-            <div class="links">
-              <a href="https://github.com/lbarriffe/churn_analytics/" target="_blank" rel="noreferrer">Repo / Docs</a>
-              <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data" target="_blank" rel="noreferrer">Data Source</a>
+            <div class="case-body">
+              <h3 class="subhead">Topics covered</h3>
+              <ul class="topics">
+                <li>Data cleaning and integrity validation</li>
+                <li>Common Table Expressions</li>
+                <li>Retention and cohort analysis</li>
+                <li>Customer churn analysis</li>
+                <li>Kaplan-Meier retention modeling</li>
+                <li>Log-rank survival difference testing</li>
+                <li>Cox proportional hazards modeling</li>
+                <li>Confidence interval estimation</li>
+              </ul>
+              <div class="links">
+                <a href="https://github.com/lbarriffe/churn_analytics/" target="_blank" rel="noreferrer">Repo / Docs</a>
+                <a href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data" target="_blank" rel="noreferrer">Data Source</a>
+              </div>
             </div>
           </div>
         </div>
@@ -181,16 +180,37 @@
           lightbox.hidden = false;
           lightbox.setAttribute("aria-hidden", "false");
           document.body.classList.add("no-scroll");
+          requestAnimationFrame(() => {
+            lightbox.classList.add("is-open");
+          });
           const closeBtn = lightbox.querySelector(".lightbox-close");
           if (closeBtn) closeBtn.focus();
         }
 
         function closeLightbox() {
-          lightbox.hidden = true;
+          if (lightbox.hidden) return;
+
+          lightbox.classList.remove("is-open");
           lightbox.setAttribute("aria-hidden", "true");
           document.body.classList.remove("no-scroll");
-          lightboxImg.src = "";
-          if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+
+          const prefersReducedMotion =
+            window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (prefersReducedMotion) {
+            lightbox.hidden = true;
+            lightboxImg.src = "";
+            if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+            return;
+          }
+
+          const onDone = (e) => {
+            if (e && e.target !== lightbox) return;
+            lightbox.removeEventListener("transitionend", onDone);
+            lightbox.hidden = true;
+            lightboxImg.src = "";
+            if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+          };
+          lightbox.addEventListener("transitionend", onDone);
         }
 
         document.addEventListener("click", (e) => {
@@ -218,5 +238,5 @@
         });
       })();
     </script>
-
-
+  </body>
+</html>
