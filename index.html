@@ -214,14 +214,17 @@
         }
 
         document.addEventListener("click", (e) => {
-          const closeTarget = e.target.closest("[data-lightbox-close]");
+          const elementTarget = e.target && e.target.nodeType === 1 ? e.target : e.target.parentElement;
+          if (!elementTarget) return;
+
+          const closeTarget = elementTarget.closest("[data-lightbox-close]");
           if (closeTarget) {
             e.preventDefault();
             closeLightbox();
             return;
           }
 
-          const anchor = e.target.closest("a.js-zoomable");
+          const anchor = elementTarget.closest("a.js-zoomable");
           if (!anchor) return;
           const img = anchor.querySelector("img");
           if (!img) return;
