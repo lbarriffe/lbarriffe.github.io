@@ -4,7 +4,7 @@
     <title>Data Analyst Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/git-main.css" />
+    <link rel="stylesheet" href="assets/css/git-main.css" />
   </head>
   <body>
     <!-- Top Header -->
@@ -172,6 +172,16 @@
         if (!lightbox || !lightboxImg) return;
 
         let lastFocused = null;
+        let closeTimer = null;
+
+        const closeEls = lightbox.querySelectorAll("[data-lightbox-close]");
+        closeEls.forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeLightbox();
+          });
+        });
 
         function openLightbox(src, alt) {
           lastFocused = document.activeElement;
@@ -180,6 +190,10 @@
           lightbox.hidden = false;
           lightbox.setAttribute("aria-hidden", "false");
           document.body.classList.add("no-scroll");
+          if (closeTimer) {
+            clearTimeout(closeTimer);
+            closeTimer = null;
+          }
           requestAnimationFrame(() => {
             lightbox.classList.add("is-open");
           });
@@ -203,26 +217,18 @@
             return;
           }
 
-          const onDone = (e) => {
-            if (e && e.target !== lightbox) return;
-            lightbox.removeEventListener("transitionend", onDone);
+          if (closeTimer) clearTimeout(closeTimer);
+          closeTimer = window.setTimeout(() => {
             lightbox.hidden = true;
             lightboxImg.src = "";
             if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
-          };
-          lightbox.addEventListener("transitionend", onDone);
+            closeTimer = null;
+          }, 240);
         }
 
         document.addEventListener("click", (e) => {
           const elementTarget = e.target && e.target.nodeType === 1 ? e.target : e.target.parentElement;
           if (!elementTarget) return;
-
-          const closeTarget = elementTarget.closest("[data-lightbox-close]");
-          if (closeTarget) {
-            e.preventDefault();
-            closeLightbox();
-            return;
-          }
 
           const anchor = elementTarget.closest("a.js-zoomable");
           if (!anchor) return;
