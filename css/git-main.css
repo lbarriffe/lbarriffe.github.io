@@ -337,12 +337,30 @@ a:hover {
 }
 
 .case-media--with-body {
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
   align-items: start;
+  gap: 18px;
 }
 
 .case-media--with-body .case-body {
   height: fit-content;
+}
+
+.case-media--with-body .media img {
+  aspect-ratio: 16 / 9;
+}
+
+.case-media--with-body .media {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+  .case-media--with-body {
+    grid-template-columns: 1fr;
+  }
 }
 
 body.no-scroll {
